@@ -1,0 +1,16 @@
+# Menghindari kesalahan/ambigu ketika memanggil folder/file di dalam public
+Options -Multiviews
+
+RewriteEngine On #Melakukan/menulis ulang url yg ada di browser
+
+# Konfigurasi proses rewrite
+
+# abaikan folder apabila ada yang sama dengan controller dan method
+RewriteCond %{REQUEST_FILENAME} !-d 
+
+# abaikan file " ~ " ~
+RewriteCond %{REQUEST_FILENAME} !-f
+# RegEx 
+RewriteRule ^(.*)$ index.php?url=$1 [L] 
+
+# ^ membaca semua yang ditulis di url di semua public, (.*) mengambil semua karakter satu persatu sampai selesai kecuali enter, $ index.php?url=$1 arahkan ke file index yg mengirimkan url dimana isi urlnya disimpan di $1 (placeholder), [L] rule yg sdh terpenuhi maka jangan jalankan rule lain setelah ini

@@ -1,0 +1,2 @@
+# Semua file yang tidak mengandung index e.g index.php/index.html tidak diizinkan dibuka pada folder app
+Options -Indexes
