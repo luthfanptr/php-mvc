@@ -1,0 +1,3 @@
+<!-- Bootstrapping footer -->
+</body>
+</html>
