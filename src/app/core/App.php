@@ -1,5 +1,6 @@
 <?php
 
+// proses routing utama (yg baca URL dan menentukan controller & method)
 class App
 {
     // properties utk menentukan parameter default
@@ -17,6 +18,7 @@ class App
             unset($url[0]);
         }
 
+        // import semua logic file yg ada di folder controllers
         require_once '../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
