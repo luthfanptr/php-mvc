@@ -24,25 +24,23 @@ class Mahasiswa_model
     //     ]
     // ];
 
-    private $dbh; // database handler
-    private $stmt; // statement
+    private $table = 'mahasiswa';
+    private $db;
 
     public function __construct()
     {
-        $dsn = 'mysql:host=mysql;dbname=db_mvc'; // data source name
-
-        try {
-            $this->dbh = new PDO($dsn, 'root', 'root');
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
+        $this->db = new Database;
     }
 
     public function getAllMahasiswa()
     {
-        // return $this->mhs;
-        $this->stmt = $this->dbh->prepare('SELECT * FROM mahasiswa');
-        $this->stmt->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_ASSOC); // ambil model dari db
+        $this->db->query('SELECT * FROM ' . $this->table);
+        return $this->db->resultSet();
+    }
+
+    public function getMahasiswaById($id) {
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id'); // untuk menyimpan data yang di binding, mengamankan dari sql injection
+        $this->db->bind('id', $id);
+        return $this->db->single();
     }
 }
