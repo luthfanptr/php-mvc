@@ -38,9 +38,28 @@ class Mahasiswa_model
         return $this->db->resultSet();
     }
 
-    public function getMahasiswaById($id) {
+    public function getMahasiswaById($id)
+    {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id'); // untuk menyimpan data yang di binding, mengamankan dari sql injection
         $this->db->bind('id', $id);
         return $this->db->single();
+    }
+
+    // menerima $_POST di controller Mahasiswa
+    public function tambahDataMahasiswa($data)
+    {
+        $query = "INSERT INTO mahasiswa(nama, nim, email, jurusan)
+                    VALUES
+                (:nama, :nim, :email, :jurusan)";
+
+        $this->db->query($query);
+        $this->db->bind('nama', $data['nama']); // dapat dari name yang ada di form 
+        $this->db->bind('nim', $data['nim']); 
+        $this->db->bind('email', $data['email']); 
+        $this->db->bind('jurusan', $data['jurusan']); 
+
+        $this->db->execute();
+
+        return $this->db->rowCount(); // kalau berhasil menghasilkan angka 1
     }
 }
