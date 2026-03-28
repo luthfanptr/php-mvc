@@ -4,7 +4,7 @@
 class Flasher
 {
 
-    // method $tipe untuk kelas bootstrap
+    // method $tipe untuk kelas bootstrap | $_SESSION menyimpan data di server
     public static function setFlash($pesan, $aksi, $tipe)
     {
         $_SESSION['flash'] = [

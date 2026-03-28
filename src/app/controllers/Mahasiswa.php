@@ -32,4 +32,18 @@ class Mahasiswa extends Controller
             exit;
         }
     }
+
+    // ambil $id untuk tau id no berapa yg ingin dihapus
+    public function hapus($id){
+        // method untuk tambah data mhs
+        if($this->model('Mahasiswa_model')->hapusDataMahasiswa($id) > 0) { // ada baris baru yg ditambahkan | dikirim ke models Mahasiswa_model
+            Flasher::setFlash('berhasil', 'dihapus', 'success'); 
+            header('Location: ' . BASEURL . '/mahasiswa');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'dihapus', 'danger'); 
+            header('Location: ' . BASEURL . '/mahasiswa'); 
+            exit;
+        }
+    }
 }
