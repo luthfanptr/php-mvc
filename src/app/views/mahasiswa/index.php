@@ -1,7 +1,14 @@
 <div class="container mt-3">
 
+    <!-- Pesan Flash -->
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
+            <?php Flasher::flash() ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
                 Tambah Data Mahasiswa
@@ -35,7 +42,7 @@
             </div>
             <div class="modal-body">
 
-                <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post"> //! NIH
+                <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama">
